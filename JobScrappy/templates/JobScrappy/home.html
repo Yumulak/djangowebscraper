@@ -1,0 +1,34 @@
+{% extends "JobScrappy/layout.html" %}
+{% block title %}
+    JobScrappy - Job Posting Monitoring Tool
+{% endblock %}
+{% block content %}
+    <h2>Most Recent Logged User Subscriptions</h2>
+
+    {% if user_list %}
+        <table class="user_list">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>URL</th>
+                <th>Interval</th>
+                <th>Log Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in user_list %}
+                <tr>
+                    <td>{{ user.name}}</td>
+                    <td>{{ user.urllist}}</td>
+                    <td>{{ user.interval }}</td>
+                    <td>{{ user.log_date | date:'d M Y' }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No users have subscribed. Use the <a href="{% url 'submit' %}">Job Posting Subscription Form to make a subscription.</a>.</p>
+    {% endif %}
+{% endblock %}
+
+{% comment %} run sendemail script on each user every appropriate (interval) {% endcomment %}

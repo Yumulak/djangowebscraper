@@ -1,0 +1,21 @@
+erdiagram scraperdb
+
+//notation
+notation=default
+
+//model entities
+entity Users{
+  id key
+  name
+  email
+  urllist
+  interval
+}
+
+entity Intervals{
+  id key
+  daily
+  weekly
+  monthly
+} 
+
